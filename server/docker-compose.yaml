@@ -1,0 +1,14 @@
+services:
+  dam-lab-2-db:
+    container_name: dam-lab-2-db
+    image: docker.io/mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: dam
+      MYSQL_USER: dam
+      MYSQL_PASSWORD: password
