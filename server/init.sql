@@ -73,6 +73,6 @@ VALUES
         38.7165,
         -9.1255,
         'A national museum dedicated to the azulejo (ceramic tile), housed in the former Convent of Madre de Deus.',
-        'Museu Nacional do Azulejo',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Igreja_do_Convento_da_Madre_de_Deus%2C_Lisboa_%28Portugal%29.jpg/300px-Igreja_do_Convento_da_Madre_de_Deus%2C_Lisboa_%28Portugal%29.jpg',
         5
     );
