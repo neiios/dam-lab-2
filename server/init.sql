@@ -1,15 +1,16 @@
 CREATE TABLE
-    IF NOT EXISTS `place` (
-        `id` int (11) NOT NULL AUTO_INCREMENT,
-        `name` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `address` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `latitude` double DEFAULT NULL,
-        `longitude` double DEFAULT NULL,
-        `description` mediumtext COLLATE utf8_unicode_ci,
-        `image` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `type` int (11) DEFAULT NULL,
-        PRIMARY KEY (`id`)
-    ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
+    IF NOT EXISTS place (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(1024) NOT NULL,
+        address VARCHAR(1024) NOT NULL,
+        latitude DOUBLE PRECISION NOT NULL,
+        longitude DOUBLE PRECISION NOT NULL,
+        description TEXT,
+        image VARCHAR(1024),
+        type INT,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
 
 INSERT INTO
     place (

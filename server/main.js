@@ -1,37 +1,40 @@
-const express = require("express");
-const mysql = require("mysql");
+import express from "express";
+import pg from "pg";
+const { Pool } = pg;
 
 const app = express();
 const port = 3000;
 
-const db = mysql.createConnection({
+const pool = new Pool({
   host: "localhost",
   user: "dam",
   password: "password",
   database: "dam",
+  port: 5432,
 });
 
-db.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to the MySQL server.");
+app.get("/places", async (req, res) => {
+  try {
+    const query = "SELECT * FROM place";
+    const { rows } = await pool.query(query);
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
-app.get("/places", (req, res) => {
-  const query = "SELECT * FROM place";
-  db.query(query, (err, results) => {
-    if (err) throw err;
-    res.json(results);
-  });
+app.get("/places/:id", async (req, res) => {
+  try {
+    const query = "SELECT * FROM place WHERE id = $1";
+    const { rows } = await pool.query(query, [req.params.id]);
+    res.json(rows.length ? rows : []);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
-app.get("/places/:id", (req, res) => {
-  const query = "SELECT * FROM place WHERE id = ?";
-  db.query(query, [req.params.id], (err, results) => {
-    if (err) throw err;
-    res.json(results.length ? results[0] : {});
-  });
-});
-
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Server running at http://localhost:${port}`);
 });
