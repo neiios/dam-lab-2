@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LisbonPlaces</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="url">http://10.0.2.2:3000/places/</string>
+    <string name="team_members">Lab2 by:\nThe members of the best team in the world</string>
+    <string name="open_map">Open Map</string>
+</resources>
